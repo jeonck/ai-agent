@@ -35,20 +35,13 @@ weight: 3
 
 에이전트 실행을 추적하는 권장 구조:
 
-```
-Trace: 사용자 요청 처리
-  └── Span: 에이전트 실행
-        ├── Span: 도구 호출 - search_docs
-        │     ├── Attribute: query="환불 정책"
-        │     ├── Attribute: results_count=3
-        │     └── Duration: 245ms
-        ├── Span: LLM 추론
-        │     ├── Attribute: model="claude-sonnet-4-6"
-        │     ├── Attribute: input_tokens=1234
-        │     └── Attribute: output_tokens=89
-        └── Span: 도구 호출 - process_refund
-              ├── Attribute: order_id="12345"
-              └── Duration: 1200ms
+```mermaid
+flowchart TD
+    T[Trace: 사용자 요청 처리]
+    T --> S[Span: 에이전트 실행]
+    S --> S1["Span: 도구 호출 - search_docs\nquery: 환불 정책 | results: 3 | 245ms"]
+    S --> S2["Span: LLM 추론\nmodel: claude-sonnet-4-6\ninput: 1234 tokens | output: 89 tokens"]
+    S --> S3["Span: 도구 호출 - process_refund\norder_id: 12345 | 1200ms"]
 ```
 
 ## 비용 최적화 전략
@@ -67,19 +60,15 @@ Trace: 사용자 요청 처리
 
 ## 장애 대응 런북
 
-```
-에이전트 오류 발생
-    ↓
-[자동] 재시도 (3회까지, 지수 백오프)
-    ↓
-재시도 실패
-    ↓
-[자동] 알림 전송 (Slack/PagerDuty)
-    ↓
-온콜 엔지니어 확인
-    ↓
-오류 유형 분류:
-├── 모델 API 오류 → 모델 폴백 또는 대기
-├── 도구 오류 → 도구 격리, 수동 처리
-└── 에이전트 논리 오류 → 롤백, eval 추가
+```mermaid
+flowchart TD
+    A[에이전트 오류 발생] --> B[자동 재시도\n최대 3회, 지수 백오프]
+    B --> C{재시도 성공?}
+    C -->|YES| D[정상 완료]
+    C -->|NO| E[자동 알림 전송\nSlack / PagerDuty]
+    E --> F[온콜 엔지니어 확인]
+    F --> G{오류 유형}
+    G -->|모델 API 오류| H[모델 폴백 또는 대기]
+    G -->|도구 오류| I[도구 격리, 수동 처리]
+    G -->|에이전트 논리 오류| J[롤백, eval 추가]
 ```
