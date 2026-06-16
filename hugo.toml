@@ -1,0 +1,78 @@
+baseURL = "https://jeonck.github.io/ai-agent/"
+title = "AI Agent 실무 플랫폼"
+theme = "hextra"
+
+enableRobotsTXT = true
+enableGitInfo = false
+hasCJKLanguage = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+enableInlineShortcodes = true
+
+[menu]
+  [[menu.main]]
+    identifier = "docs"
+    name = "문서"
+    pageRef = "/docs"
+    weight = 1
+  [[menu.main]]
+    name = "검색"
+    weight = 9
+    [menu.main.params]
+      type = "search"
+  [[menu.main]]
+    name = "GitHub"
+    weight = 10
+    url = "https://github.com/jeonck/ai-agent"
+    [menu.main.params]
+      icon = "github"
+
+[params]
+  description = "AI 에이전트를 이해하는 곳이 아니라, 실제로 도입하고 운영하게 만드는 실무 지식 플랫폼"
+
+  [params.navbar]
+    displayTitle = true
+    displayLogo = false
+    width = "normal"
+
+  [params.theme]
+    default = "system"
+    displayToggle = true
+
+  [params.footer]
+    enable = true
+    displayCopyright = true
+    displayPoweredBy = false
+    width = "normal"
+
+  [params.search]
+    enable = true
+    type = "flexsearch"
+    [params.search.flexsearch]
+      index = "content"
+      tokenize = "forward"
+
+  [params.page]
+    width = "normal"
+
+  [params.toc]
+    displayTags = true
+
+  [params.highlight]
+    [params.highlight.copy]
+      enable = true
+      display = "hover"
+
+  displayUpdatedDate = false
+  dateFormat = "2006년 1월 2일"
