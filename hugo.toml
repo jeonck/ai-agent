@@ -27,6 +27,11 @@ enableInlineShortcodes = true
     pageRef = "/docs"
     weight = 1
   [[menu.main]]
+    identifier = "blog"
+    name = "블로그"
+    pageRef = "/blog"
+    weight = 2
+  [[menu.main]]
     name = "검색"
     weight = 9
     [menu.main.params]
