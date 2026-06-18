@@ -7,6 +7,7 @@ weight: 5
 
 {{< cards >}}
   {{< card link="evaluation" title="평가 (Eval)" icon="beaker" subtitle="기준선 구축·실패 케이스·회귀 테스트" >}}
+  {{< card link="eval-frameworks" title="Eval 프레임워크" icon="cog" subtitle="DeepEval·Promptfoo·RAGAS·추적 도구" >}}
   {{< card link="guardrails" title="가드레일" icon="shield-check" subtitle="입력 필터·출력 검증·HITL 트리거" >}}
   {{< card link="operations" title="운영" icon="server" subtitle="관측성·비용 최적화·장애 대응" >}}
   {{< card link="governance" title="거버넌스" icon="scale" subtitle="NIST AI RMF·조직 정책·책임 경계" >}}

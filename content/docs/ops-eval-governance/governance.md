@@ -1,6 +1,6 @@
 ---
 title: "거버넌스"
-weight: 4
+weight: 5
 ---
 
 ## NIST AI RMF 기반 에이전트 거버넌스
